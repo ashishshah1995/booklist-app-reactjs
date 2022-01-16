@@ -1,12 +1,8 @@
 import React from "react";
 
-const Book = ({ img, title, author }) => {
+const Book = ({ img, title, author, description }) => {
   const clickHandler = () => {
-    alert("hello world");
-  };
-
-  const complexExample = (author) => {
-    console.log(author);
+    alert(description);
   };
 
   return (
@@ -17,13 +13,10 @@ const Book = ({ img, title, author }) => {
       }}
     >
       <img src={img} alt="" />
-      <h1 onClick={() => console.log(title)}>{title}</h1>
+      <h1 onClick={() => console.log(description)}>{title}</h1>
       <h4>{author}</h4>
       <button type="button" onClick={clickHandler}>
-        On Click event
-      </button>
-      <button type="button" onClick={() => complexExample(author)}>
-        On Click event
+        Description
       </button>
     </article>
   );

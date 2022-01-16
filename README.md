@@ -7,19 +7,27 @@ A ReactJS project to display the booklist. A basic React app to show some of the
 https://react-basics-book-application.netlify.app/
 
 ## Concepts 
-JSX
+- JSX
 
-JSX Css 
+- JSX Css 
 
-JSX Javascript 
-Props vs Events
-Key Prop And Spread Operator 
-Event Basics 
-Import And Export Statements
-Props 
-Props Destructuring 
-Props - Children 
-Lists 
+- JSX Javascript 
+
+- Props vs Events
+
+- Key Prop And Spread Operator 
+
+- Event Basics 
+
+- Import And Export Statements
+
+- Props 
+
+- Props Destructuring 
+
+- Props - Children 
+
+- Lists 
 
 ## Available Scripts
 

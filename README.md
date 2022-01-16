@@ -1,4 +1,4 @@
-# Simple React App
+# Simple React Booklist Application
 
 A ReactJS project to display the booklist. A basic React app to show some of the concepts in ReactJS
 

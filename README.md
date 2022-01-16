@@ -4,7 +4,7 @@ A ReactJS project to display the booklist. A basic React app to show some of the
 
 ## Live Application Link
 
-https://react-basics-book-application.netlify.app/
+https://simple-react-booklist-application.netlify.app/
 
 ## Concepts 
 - JSX

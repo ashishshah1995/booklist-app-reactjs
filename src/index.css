@@ -19,6 +19,14 @@ body {
   gap: 2rem;
 }
 
+.booktitle {
+  text-align: center;
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 768px) {
   .booklist {
     grid-template-columns: repeat(3, 1fr);
@@ -102,4 +110,9 @@ body {
   background-color: white;
   color: black;
   border: 2px solid #4caf50;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
 }

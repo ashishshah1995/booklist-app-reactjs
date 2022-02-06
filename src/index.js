@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
 import "./index.css";
 
@@ -12,7 +12,7 @@ function BookList() {
   // Removes all books
   const clearBooks = () => {
     setBooksData([]);
-    setMoreBooks([]);
+    setDisplayBook([]);
   };
 
   // Shows all Book
@@ -21,7 +21,7 @@ function BookList() {
     setShow(true);
   };
 
-  // Removes Individual book
+  // Remove Individual book
   const removeIndividualBook = (id) => {
     const updatedBookData = booksData.filter((book) => {
       return book.id !== id;
@@ -30,13 +30,21 @@ function BookList() {
   };
 
   // Display more books
-  const [morebook, setMoreBooks] = useState([]);
+  const [displaybook, setDisplayBook] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchBooks = async () => {
+    setIsLoading(true);
     const response = await fetch(fetchBookUrl);
     const data = await response.json();
-    setMoreBooks(data.books);
+    setDisplayBook(data.books);
   };
+
+  useEffect(() => {
+    if (displaybook && displaybook.length !== 0) {
+      setIsLoading(false);
+    }
+  }, [displaybook]);
 
   // Hide Show More button when Hide Books button is clicked
   const [show, setShow] = useState(true);
@@ -47,7 +55,6 @@ function BookList() {
   return (
     <section className="wrapper">
       <h1 className="booktitle">Booklist</h1>
-
       <div className="booklist">
         {booksData.map((book, index) => {
           return (
@@ -100,21 +107,27 @@ function BookList() {
           Show more
         </button>
       )}
-      <div className="booklist">
-        {morebook.map((book, index) => {
-          const { title, subtitle, price, image } = book;
-          return (
-            <Book
-              key={index}
-              img={image}
-              title={title}
-              description={subtitle}
-              price={price}
-              removeIndividualBook={removeIndividualBook}
-            ></Book>
-          );
-        })}
-      </div>
+      {/* Alternate - displaybook.length === 0 , > 0 condition */}
+      {isLoading && (
+        <h1 style={{ marginLeft: "160px", padding: "30px" }}>Loading...</h1>
+      )}
+      {!isLoading && (
+        <div className="booklist">
+          {displaybook.map((book, index) => {
+            const { title, subtitle, price, image } = book;
+            return (
+              <Book
+                key={index}
+                img={image}
+                title={title}
+                description={subtitle}
+                price={price}
+                removeIndividualBook={removeIndividualBook}
+              ></Book>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

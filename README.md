@@ -31,6 +31,8 @@ https://simple-react-booklist-application.netlify.app/
 
 - useState Hook
 
+- useEffect Hook
+
 
 ## Available Scripts
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
 const Book = ({
@@ -41,6 +41,11 @@ const Book = ({
     setQuantity(0);
   };
 
+  //useEffect hook
+  useEffect(() => {
+    document.title = "Booklist Website";
+  }, []);
+
   return (
     <article
       className="book"
@@ -48,9 +53,9 @@ const Book = ({
         console.log(title);
       }}
     >
-      <img src={img} alt="" />
+      <img className="bookImage" src={img} alt="" />
       <h1 onClick={() => console.log(description)}>{title}</h1>
-      <h4>{author}</h4>
+      <h4>{author || "Jane Doe"}</h4>
       <button type="button" className="button button1" onClick={clickHandler}>
         Description
       </button>
@@ -62,7 +67,7 @@ const Book = ({
       </div>
       <button
         className="button"
-        style={{ height: "20px", width: "131" }}
+        style={{ height: "50px", width: "131px" }}
         onClick={() => removeIndividualBook(id)}
       >
         Remove book

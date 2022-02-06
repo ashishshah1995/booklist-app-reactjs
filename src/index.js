@@ -6,16 +6,19 @@ import { books } from "./books";
 import Book from "./Book";
 
 function BookList() {
+  const fetchBookUrl = "https://api.itbook.store/1.0/new";
   const [booksData, setBooksData] = useState(books);
 
   // Removes all books
   const clearBooks = () => {
     setBooksData([]);
+    setMoreBooks([]);
   };
 
   // Shows all Book
   const handleShowBook = () => {
     setBooksData(books);
+    setShow(true);
   };
 
   // Removes Individual book
@@ -24,6 +27,21 @@ function BookList() {
       return book.id !== id;
     });
     setBooksData(updatedBookData);
+  };
+
+  // Display more books
+  const [morebook, setMoreBooks] = useState([]);
+
+  const fetchBooks = async () => {
+    const response = await fetch(fetchBookUrl);
+    const data = await response.json();
+    setMoreBooks(data.books);
+  };
+
+  // Hide Show More button when Hide Books button is clicked
+  const [show, setShow] = useState(true);
+  const hideButton = () => {
+    setShow(false);
   };
 
   return (
@@ -64,12 +82,39 @@ function BookList() {
           <button
             style={{ marginLeft: "190px" }}
             className="button button1"
-            onClick={clearBooks}
+            onClick={() => {
+              clearBooks();
+              hideButton();
+            }}
           >
             Hide Books
           </button>
         </div>
       )}
+      {show && (
+        <button
+          className="button button1"
+          style={{ marginLeft: "190px", width: "115px", height: "50px" }}
+          onClick={fetchBooks}
+        >
+          Show more
+        </button>
+      )}
+      <div className="booklist">
+        {morebook.map((book, index) => {
+          const { title, subtitle, price, image } = book;
+          return (
+            <Book
+              key={index}
+              img={image}
+              title={title}
+              description={subtitle}
+              price={price}
+              removeIndividualBook={removeIndividualBook}
+            ></Book>
+          );
+        })}
+      </div>
     </section>
   );
 }

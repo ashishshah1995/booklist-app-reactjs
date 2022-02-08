@@ -35,9 +35,13 @@ function BookList() {
 
   const fetchBooks = async () => {
     setIsLoading(true);
-    const response = await fetch(fetchBookUrl);
-    const data = await response.json();
-    setDisplayBook(data.books);
+    try {
+      const response = await fetch(fetchBookUrl);
+      const data = await response.json();
+      setDisplayBook(data.books);
+    } catch (error) {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {

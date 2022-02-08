@@ -37,9 +37,9 @@ body {
 .book {
   background-color: white;
   border-radius: 1rem;
-  padding: 1rem 2rem;
+  padding: 4rem 2rem;
   width: 453px;
-  height: 750px;
+  height: fit-content;
 }
 
 .book h1 {

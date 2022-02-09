@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 const Quantity = ({ id, removeIndividualBook }) => {
   // Displays Price
@@ -47,14 +48,14 @@ const Quantity = ({ id, removeIndividualBook }) => {
       <div className="quantity">
         <h3>Quantity</h3>
         <button className="button button1" onClick={increaseQuantity}>
-          {"+"}
+          <AiOutlinePlusCircle />
         </button>
         <button
           className="button button1"
           id="decreaseQuantity"
           onClick={decreaseQuantity}
         >
-          {"--"}
+          <AiOutlineMinusCircle />
         </button>
         <button
           className="button button1"

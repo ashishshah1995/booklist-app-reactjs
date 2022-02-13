@@ -9,6 +9,22 @@ function BookList() {
   const fetchBookUrl = "https://api.itbook.store/1.0/new";
   const [booksData, setBooksData] = useState(books);
 
+  // Unique value (Categories)- Set data structure
+  // Set returns object, desctructure to get array
+  const allCategories = ["all", ...new Set(books.map((item) => item.category))];
+
+  //Filter Books based on Category type
+  const [categories, setCategories] = useState(allCategories);
+
+  const filterItems = (category) => {
+    if (category === "all") {
+      setBooksData(books);
+      return;
+    }
+    const newItems = books.filter((item) => category === item.category);
+    setBooksData(newItems);
+  };
+
   // Removes all books
   const clearBooks = () => {
     setBooksData([]);
@@ -59,6 +75,25 @@ function BookList() {
   return (
     <section className="wrapper">
       <h1 className="booktitle">Booklist</h1>
+      <div className="underline"></div>
+
+      {/* Display books based on Category Type */}
+      <div className="btn-container">
+        {categories.map((item, index) => {
+          return (
+            <button
+              className="filter-btn"
+              type="button"
+              key={index}
+              onClick={() => {
+                filterItems(item);
+              }}
+            >
+              {item}
+            </button>
+          );
+        })}
+      </div>
       <div className="booklist">
         {booksData.map((book, index) => {
           return (

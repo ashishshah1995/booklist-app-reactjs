@@ -14,7 +14,7 @@ function BookList() {
   const allCategories = ["all", ...new Set(books.map((item) => item.category))];
 
   //Filter Books based on Category type
-  const [categories, setCategories] = useState(allCategories);
+  const [categories] = useState(allCategories);
 
   const filterItems = (category) => {
     if (category === "all") {

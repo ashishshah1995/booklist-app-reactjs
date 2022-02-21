@@ -1,6 +1,6 @@
-# Simple React Booklist Application
+# Booklist Application
 
-A ReactJS project to display the booklist. A basic React app to show some of the concepts in ReactJS
+A ReactJS project to display the list of books based on the category. 
 
 ## Live Application Link
 
@@ -32,6 +32,8 @@ https://simple-react-booklist-application.netlify.app/
 - useState Hook
 
 - useEffect Hook
+
+- Forms
 
 
 ## Available Scripts

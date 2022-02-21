@@ -8,6 +8,7 @@ import Book from "./Book";
 function BookList() {
   const fetchBookUrl = "https://api.itbook.store/1.0/new";
   const [booksData, setBooksData] = useState(books);
+  const [count, setCount] = useState(0);
 
   // Unique value (Categories)- Set data structure
   // Set returns object, desctructure to get array
@@ -72,6 +73,13 @@ function BookList() {
     setShow(false);
   };
 
+  // Function to display number of books based on input
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setBooksData(books.slice(0, count));
+    setCount(0);
+  };
+
   return (
     <section className="wrapper">
       <h1 className="booktitle">Booklist</h1>
@@ -94,6 +102,27 @@ function BookList() {
           );
         })}
       </div>
+      <section>
+        <form action="submit" class="form" onSubmit={handleSubmit}>
+          <label htmlFor="amount" style={{ fontWeight: "bold" }}>
+            Books:
+          </label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            value={count}
+            min="1"
+            max={books.length}
+            onChange={(e) => {
+              setCount(e.target.value);
+            }}
+          ></input>
+          <button type="submit" className="btn1">
+            Generate
+          </button>
+        </form>
+      </section>
       <div className="booklist">
         {booksData.map((book, index) => {
           return (
